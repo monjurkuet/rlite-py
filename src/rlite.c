@@ -192,7 +192,7 @@ static PyObject *Rlite_command(hirlite_RliteObject *self, PyObject *args) {
     for (i = 0; i < argc; i++) {
         object = PyTuple_GetItem(args, i);
         if (PyUnicode_Check(object))
-            bytes = PyUnicode_AsASCIIString(object);
+            bytes = PyUnicode_AsUTF8String(object);
         else
             bytes = PyObject_Bytes(object);
 
