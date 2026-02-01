@@ -1,10 +1,13 @@
 from setuptools import setup, Extension
 from distutils.command import install_lib as _install_lib
-import imp, glob
+import glob
+import os
 
 def version():
-    module = imp.load_source("hirlite.version", "hirlite/version.py")
-    return module.__version__
+    with open(os.path.join("hirlite", "version.py"), "r") as f:
+        d = {}
+        exec(f.read(), d)
+        return d["__version__"]
 
 # Patch "install_lib" command to run build_clib before build_ext
 # to properly work with easy_install.
